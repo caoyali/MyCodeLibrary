@@ -1,5 +1,7 @@
 package com.example.forev.mycodelibrary;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -15,5 +17,9 @@ public class AnimitionScaleAct extends AppCompatActivity {
         ImageView imageView= (ImageView) findViewById(R.id.image);
         MyRotateAnimation animation = new MyRotateAnimation();
         imageView.startAnimation(animation);
+    }
+    public static void openActivity(Activity activity) {
+        Intent intent = new Intent(activity, AnimitionScaleAct.class);
+        activity.startActivity(intent);
     }
 }
