@@ -29,7 +29,7 @@ public class MyRotateAnimation extends Animation{
         //interpolatedTime 代表的是进度
         mCamera.save();
         if (interpolatedTime > 0.6) {
-//            代表当前的进度来讲理应回到哪个角度
+//            代表当前的进度来讲理应回到哪个角度，重点是回到哪个角度
             mCamera.rotateY(225 * (1-interpolatedTime));
         }else {
             mCamera.rotateY(150 * interpolatedTime);
