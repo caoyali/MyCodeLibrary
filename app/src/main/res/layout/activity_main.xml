@@ -8,32 +8,45 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/animation_btn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
-                android:textColor="@color/white_0"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
+                android:text="@string/animation"
+                android:textColor="@color/white_0"
                 android:textSize="20sp"
-                android:text="@string/animation"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
-                android:textColor="@color/white_0"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
+                android:text="@string/view"
+                android:textColor="@color/white_0"
                 android:textSize="20sp"
-                android:text="@string/view"/>
-        </LinearLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/animation_btn" />
+        </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
 
