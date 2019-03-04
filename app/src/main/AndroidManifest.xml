@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".ViewListActivity" />
         <activity android:name=".AppCompatActivitySub"></activity>
+        <activity android:name=".DrawableDemoAct"></activity>
     </application>
 
 </manifest>

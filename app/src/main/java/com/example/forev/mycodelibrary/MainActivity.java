@@ -20,7 +20,7 @@ public class MainActivity extends BaseActivity{
 
     }
 
-    @OnClick({R.id.animation_btn, R.id.view})
+    @OnClick({R.id.animation_btn, R.id.view, R.id.mSelectFileBtn})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.animation_btn:
@@ -28,6 +28,9 @@ public class MainActivity extends BaseActivity{
                 break;
             case R.id.view:
                 ViewListActivity.openActivity(this);
+                break;
+            case R.id.mSelectFileBtn:
+                openActivity(DrawableDemoAct.class);
                 break;
         }
     }
