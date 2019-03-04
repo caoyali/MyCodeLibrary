@@ -122,6 +122,7 @@
                 app:layout_constraintStart_toEndOf="@+id/mTransDemo"
                 app:layout_constraintTop_toTopOf="@+id/mTransDemo" />
 
+            <!--修改字体；，在design中点击做更靠谱。尽量别自己写了，以免配置一个错的corts导致崩溃-->
             <TextView
                 android:id="@+id/mFontDemo"
                 android:layout_width="0dp"
