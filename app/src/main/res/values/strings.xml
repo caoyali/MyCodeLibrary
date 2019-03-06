@@ -5,7 +5,8 @@
     <string name="toast">自定义toast</string>
     <string name="loadingdialog">自定义loading</string>
     <string name="constriant_layout">constriantlayout 约束布局实验</string>
-    
+
+    <!--字体相关key -->
     <string-array name="certs">
         <item>MIIEqDCCA5CgAwIBAgIJA071MA0GCSqGSIb3DQEBBAUAMIGUMQsww...</item>
     </string-array>

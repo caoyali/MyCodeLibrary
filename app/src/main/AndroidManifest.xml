@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.forev.mycodelibrary">
+    package="com.example.forev.mycodelibrary"
+    android:targetSandboxVersion="1"
+    android:revisionCode="1000000201"
+    android:versionName="1.0.1"
+    >
+    
+    <permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:icon="@drawable/demo1"
+        android:description="@string/animation"
+        android:label="label"
+        android:permissionGroup="group"
+        />
+
+    <permission-group android:name="group"
+        android:permissionGroupFlags="personalInfo"/>
 
     <application
         android:allowBackup="true"
@@ -20,6 +34,7 @@
         <activity android:name=".ViewListActivity" />
         <activity android:name=".AppCompatActivitySub"></activity>
         <activity android:name=".DrawableDemoAct"></activity>
+        <activity android:name=".ReflexDemoAct"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
