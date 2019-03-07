@@ -1,5 +1,7 @@
 package com.example.forev.mycodelibrary;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
 import butterknife.OnClick;
@@ -20,7 +22,7 @@ public class MainActivity extends BaseActivity{
 
     }
 
-    @OnClick({R.id.animation_btn, R.id.view, R.id.mSelectFileBtn, R.id.mReflex})
+    @OnClick({R.id.animation_btn, R.id.view, R.id.mSelectFileBtn, R.id.mReflex, R.id.mPermissionRequest})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.animation_btn:
@@ -35,6 +37,20 @@ public class MainActivity extends BaseActivity{
             case R.id.mReflex:
                 openActivity(ReflexDemoAct.class);
                 break;
+            case R.id.mPermissionRequest:
+                requestPermission();
+                break;
+        }
+    }
+
+    private void requestPermission() {
+        boolean isGranted = (ActivityCompat.checkSelfPermission(
+                this, "com.example.forev.mycodelibrary.YAYALI")
+                == PackageManager.PERMISSION_GRANTED);
+        if (isGranted){
+            return;
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{"com.example.forev.mycodelibrary.YAYALI"}, 1);
         }
     }
 

@@ -6,15 +6,25 @@
     android:versionName="1.0.1"
     >
     
-    <permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <permission android:name="com.example.forev.mycodelibrary.YAYALI"
         android:icon="@drawable/demo1"
-        android:description="@string/animation"
+        android:description="@string/permission_des"
         android:label="label"
-        android:permissionGroup="group"
+        android:protectionLevel="dangerous"
         />
 
     <permission-group android:name="group"
         android:permissionGroupFlags="personalInfo"/>
+
+    <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI"/>
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.example.forev.mycodelibrary"
+        android:label="test"
+        android:handleProfiling="true"
+        android:functionalTest="true"
+        android:targetProcesses="*"/>
 
     <application
         android:allowBackup="true"
@@ -23,6 +33,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <uses-library android:name="android.test.runner" />
         <activity android:name=".AnimitionScaleAct" />
         <activity android:name=".MainActivity">
             <intent-filter>
