@@ -22,7 +22,8 @@ public class MainActivity extends BaseActivity{
 
     }
 
-    @OnClick({R.id.animation_btn, R.id.view, R.id.mSelectFileBtn, R.id.mReflex, R.id.mPermissionRequest})
+    @OnClick({R.id.animation_btn, R.id.view, R.id.mSelectFileBtn, R.id.mReflex, R.id.mPermissionRequest,
+    R.id.mHookTest})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.animation_btn:
@@ -39,6 +40,9 @@ public class MainActivity extends BaseActivity{
                 break;
             case R.id.mPermissionRequest:
                 requestPermission();
+                break;
+            case R.id.mHookTest:
+                openActivity(HookTestAct.class);
                 break;
         }
     }

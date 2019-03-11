@@ -18,6 +18,7 @@
 
     <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI"/>
 
+
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="com.example.forev.mycodelibrary"
@@ -46,6 +47,7 @@
         <activity android:name=".AppCompatActivitySub"></activity>
         <activity android:name=".DrawableDemoAct"></activity>
         <activity android:name=".ReflexDemoAct"></activity>
+        <activity android:name=".HookTestAct"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
