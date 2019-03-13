@@ -25,12 +25,12 @@ public class HookTestAct extends BaseActivity{
             @Override
             public void onClick(View v) {
                 Log.i("HookTestAct", "点击了hook按钮");
-                hookOnclickListner(v);
+                hookOnclickListener(v);
             }
         });
     }
 
-    public static void hookOnclickListner(View view) {
+    public static void hookOnclickListener(View view) {
         try {
 //            通过反射调用方法getListnerInfo获取ListenerInfo变量
 //            修改ListenerInfo中存储的onClickListener,将这个listener钓出来，再结合自己自定义的listener进行配合
@@ -46,6 +46,8 @@ public class HookTestAct extends BaseActivity{
 //            其他SDK中进行操作这种问题！！！
 //            这种情况下，hook机制解决的问题最多，，但是缺点也是显而易见的，就是别人的SDK一旦改个相关代码发个新版本，例如改个方法名字吧，
 //            然后你再更新一下SDK，，你的代码就 hold 不住了。
+
+//            使用场景诸如 全局自定义长按复制粘贴功能，并给出统一的反馈。
             Method getListenerInfoMethod = View.class.getDeclaredMethod("getListenerInfo");
             getListenerInfoMethod.setAccessible(true);
             Object listnerInfo = getListenerInfoMethod.invoke(view);

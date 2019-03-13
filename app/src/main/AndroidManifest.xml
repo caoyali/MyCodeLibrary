@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.forev.mycodelibrary"
     android:targetSandboxVersion="1"
     android:revisionCode="1000000201"
@@ -19,6 +20,55 @@
     <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI"/>
 
 
+    <supports-screens
+        android:requiresSmallestWidthDp="160"
+        android:anyDensity="false"
+        />
+
+    <compatible-screens>
+        <!--小屏幕各种分辨率-->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="small"/>
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="small"/>
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="small"/>
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="small"/>
+        <screen
+            android:screenDensity="xxhdpi"
+            android:screenSize="small"/>
+        <screen
+            android:screenDensity="xxxhdpi"
+            android:screenSize="small"/>
+
+        <!--普通大小各种分辨率-->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal"/>
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal"/>
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal"/>
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal"/>
+        <screen
+            android:screenDensity="xxhdpi"
+            android:screenSize="normal"/>
+        <screen
+            android:screenDensity="xxxhdpi"
+            android:screenSize="normal"/>
+
+    </compatible-screens>
+
+    <supports-gl-texture android:name="GL_EXT_texture_compression_latc"/>
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="com.example.forev.mycodelibrary"
@@ -28,15 +78,24 @@
         android:targetProcesses="*"/>
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false"
+        android:icon="@drawable/demo1"
+        android:logo="@drawable/demo1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:allowTaskReparenting="true"
+        android:allowClearUserData="false"
+        android:banner="@drawable/demo1"
+        android:manageSpaceActivity=".HookTestAct"
+        android:debuggable="true"
+        android:resizeableActivity="false"
+        tools:ignore="GoogleAppIndexingWarning">
         <uses-library android:name="android.test.runner" />
         <activity android:name=".AnimitionScaleAct" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:taskAffinity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +103,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewListActivity" />
-        <activity android:name=".AppCompatActivitySub"></activity>
+        <activity android:name=".AppCompatActivitySub"
+            android:launchMode="singleTask"
+            android:taskAffinity=".AppCompatActivitySub">
+
+        </activity>
+
         <activity android:name=".DrawableDemoAct"></activity>
         <activity android:name=".ReflexDemoAct"></activity>
         <activity android:name=".HookTestAct"></activity>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyCodeLibrary</string>
+    <string name="app_name">我的demo</string>
     <string name="animation">动画</string>
     <string name="view">自定义View</string>
     <string name="toast">自定义toast</string>
