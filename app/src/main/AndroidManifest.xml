@@ -18,6 +18,8 @@
         android:permissionGroupFlags="personalInfo"/>
 
     <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI"/>
+    <!--访问内容提供程序数据所需要的权限，会自动允许-->
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/>
 
 
     <supports-screens
@@ -91,6 +93,7 @@
         android:manageSpaceActivity=".HookTestAct"
         android:debuggable="true"
         android:resizeableActivity="false"
+        android:process=".myDemo"
         tools:ignore="GoogleAppIndexingWarning">
         <uses-library android:name="android.test.runner" />
         <activity android:name=".AnimitionScaleAct" />
@@ -112,6 +115,7 @@
         <activity android:name=".DrawableDemoAct"></activity>
         <activity android:name=".ReflexDemoAct"></activity>
         <activity android:name=".HookTestAct"></activity>
+        <activity android:name=".ProviderTestAct"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
