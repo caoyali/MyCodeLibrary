@@ -1,8 +1,11 @@
 package com.example.forev.mycodelibrary;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
+
+import com.example.forev.mycodelibrary.service.ServiceTest;
 
 import butterknife.OnClick;
 
@@ -23,7 +26,7 @@ public class MainActivity extends BaseActivity{
     }
 
     @OnClick({R.id.animation_btn, R.id.view, R.id.mSelectFileBtn, R.id.mReflex, R.id.mPermissionRequest,
-    R.id.mHookTest, R.id.mProviderTest})
+    R.id.mHookTest, R.id.mProviderTest, R.id.mServiceTest})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.animation_btn:
@@ -46,6 +49,14 @@ public class MainActivity extends BaseActivity{
                 break;
             case R.id.mProviderTest:
                 openActivity(ProviderTestAct.class);
+                break;
+            case R.id.mServiceTest:
+                Intent intent1 = new Intent(this, ServiceTest.class);
+                startService(intent1);
+                Intent intent2 = new Intent(this, ServiceTest.class);
+                startService(intent2);
+                Intent intent3 = new Intent(this, ServiceTest.class);
+                startService(intent3);
                 break;
         }
     }

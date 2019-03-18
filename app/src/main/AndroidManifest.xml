@@ -20,6 +20,7 @@
     <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI"/>
     <!--访问内容提供程序数据所需要的权限，会自动允许-->
     <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/>
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY"/>
 
 
     <supports-screens
