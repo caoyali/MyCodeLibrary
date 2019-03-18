@@ -117,10 +117,13 @@
         <activity android:name=".ReflexDemoAct"></activity>
         <activity android:name=".HookTestAct"></activity>
         <activity android:name=".ProviderTestAct"></activity>
+        <activity android:name=".ServiceTestAct"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <service android:name=".service.ServiceTest"/>
     </application>
 
 </manifest>

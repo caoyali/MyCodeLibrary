@@ -2,6 +2,8 @@ package com.example.forev.mycodelibrary.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -9,9 +11,12 @@ import android.util.Log;
 public class ServiceTest extends Service {
     private static String TAG = "ServiceTest";
 
+    private MyBinder binder = new MyBinder();
+
     @Override
     public void onStart(Intent intent, int startId) {
         Log.i(TAG, "onStart...");
+        Handler handler = new Handler();
         super.onStart(intent, startId);
     }
 
@@ -43,6 +48,12 @@ public class ServiceTest extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(TAG, "onBind...");
-        return null;
+        return binder;
+    }
+
+    public class MyBinder extends Binder {
+        public ServiceTest getService(){
+            return ServiceTest.this;
+        }
     }
 }

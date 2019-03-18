@@ -51,12 +51,7 @@ public class MainActivity extends BaseActivity{
                 openActivity(ProviderTestAct.class);
                 break;
             case R.id.mServiceTest:
-                Intent intent1 = new Intent(this, ServiceTest.class);
-                startService(intent1);
-                Intent intent2 = new Intent(this, ServiceTest.class);
-                startService(intent2);
-                Intent intent3 = new Intent(this, ServiceTest.class);
-                startService(intent3);
+                openActivity(ServiceTestAct.class);
                 break;
         }
     }
