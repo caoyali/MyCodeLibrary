@@ -107,6 +107,7 @@
                 android:background="@drawable/bg_6c_green_ff33cc66"
                 android:gravity="center"
                 android:hint="测试键盘uses-configuration"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mPermissionRequest" />
@@ -155,6 +156,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mProviderTest" />
+
+            <TextView
+                android:id="@+id/mAlgorithmTest"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_6c_green_ff33cc66"
+                android:gravity="center"
+                android:text="Java算法"
+                android:textColor="@color/bg_btn_select"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mServiceTest" />
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

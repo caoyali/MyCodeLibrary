@@ -118,6 +118,8 @@
         <activity android:name=".HookTestAct"></activity>
         <activity android:name=".ProviderTestAct"></activity>
         <activity android:name=".ServiceTestAct"></activity>
+        <activity android:name=".AlgorithmTestAct"></activity>
+        <activity android:name=".SortAlgorithmAct"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
