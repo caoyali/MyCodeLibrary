@@ -1,17 +1,10 @@
 package com.example.forev.mycodelibrary;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
-import java.util.logging.Level;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,6 +19,8 @@ public class SortAlgorithmAct extends BaseActivity {
     TextView mPopSortResult;
     @BindView(R.id.mQuickSortResult)
     TextView mQuickSortResult;
+    @BindView(R.id.mEasyInserSortResult)
+    TextView mEasyInsertSortResult;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_sort_algorithm;
@@ -46,7 +41,7 @@ public class SortAlgorithmAct extends BaseActivity {
         printArray(mNumbers, mNumbersTextView);
     }
 
-    @OnClick({R.id.mPopSort, R.id.mQuickSort})
+    @OnClick({R.id.mPopSort, R.id.mQuickSort, R.id.mEasyInsertSort})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.mPopSort:
@@ -57,6 +52,11 @@ public class SortAlgorithmAct extends BaseActivity {
                 int[] nu = Arrays.copyOf(mNumbers, mNumbers.length);
                 quickSort(nu, 0, mNumbers.length - 1);
                 printArray(nu, mQuickSortResult);
+                break;
+            case R.id.mEasyInsertSort:
+                int[] nu1 = Arrays.copyOf(mNumbers, mNumbers.length);
+                easyInsertSort(nu1);
+                printArray(nu1, mEasyInsertSortResult);
                 break;
         }
     }
@@ -168,4 +168,62 @@ public class SortAlgorithmAct extends BaseActivity {
         ints[position1] = ints[position2];
         ints[position2] = t;
     }
+
+    /**
+     * 基本思想：
+
+     　　把n个待排序的元素看成一个有序表和一个无序表，开始时有序表中只有一个元素，无序表中有n-1个元素；排序过程即每次从无序表中取出第一个元素，将它插入到有序表中，使之成为新的有序表，重复n-1次完成整个排序过程。
+
+     　实例：
+
+     　　0.初始状态 3，1，5，7，2，4，9，6（共8个数）
+
+     　　   有序表：3；无序表：1，5，7，2，4，9，6
+
+     　　1.第一次循环，从无序表中取出第一个数 1，把它插入到有序表中，使新的数列依旧有序
+
+     　　   有序表：1，3；无序表：5，7，2，4，9，6
+
+     　　2.第二次循环，从无序表中取出第一个数 5，把它插入到有序表中，使新的数列依旧有序
+
+     　　   有序表：1，3，5；无序表：7，2，4，9，6
+
+     　　3.第三次循环，从无序表中取出第一个数 7，把它插入到有序表中，使新的数列依旧有序
+
+     　　   有序表：1，3，5，7；无序表：2，4，9，6
+
+     　　4.第四次循环，从无序表中取出第一个数 2，把它插入到有序表中，使新的数列依旧有序
+
+     　　   有序表：1，2，3，5，7；无序表：4，9，6
+
+     　　5.第五次循环，从无序表中取出第一个数 4，把它插入到有序表中，使新的数列依旧有序
+
+     　　   有序表：1，2，3，4，5，7；无序表：9，6
+
+     　　6.第六次循环，从无序表中取出第一个数 9，把它插入到有序表中，使新的数列依旧有序
+
+     　　   有序表：1，2，3，4，5，7，9；无序表：6
+
+     　　7.第七次循环，从无序表中取出第一个数 6，把它插入到有序表中，使新的数列依旧有序
+
+     　　   有序表：1，2，3，4，5，6，7，9；无序表：（空）
+     * @param ints
+     */
+    private void easyInsertSort(int[] ints) {
+        //就像扑克牌摸排排序差不多
+        //首先拿出第i个参数，假设为1，那么让 1之后的所有元素和当前的这个数比较，一旦比当前的数还小，
+        //两个数调换，总之就是让当前i位置上的数为目前最小！
+        //然后，走了一遍之后，i的位置上肯定是最小的值了。
+        //之后i++,也就是我该捋第二个最小的牌了。
+        for (int i = 0; i < ints.length; i++){
+            for(int k = i + 1; k < ints.length; k++) {
+                if (ints[i] <= ints[k]) {
+                    continue;
+                } else {
+                    trans(ints, i, k);
+                }
+            }
+        }
+    }
+
 }
