@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,55 +7,69 @@
     tools:context=".activity.MainActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/toast"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
-                android:textColor="@color/white_0"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
+                android:text="@string/toast"
+                android:textColor="@color/white_0"
                 android:textSize="20sp"
-                android:text="@string/toast"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/loading_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
-                android:textColor="@color/white_0"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
+                android:text="@string/loadingdialog"
+                android:textColor="@color/white_0"
                 android:textSize="20sp"
-                android:text="@string/loadingdialog"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toast" />
+
             <TextView
                 android:id="@+id/constriant_layout"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
-                android:textColor="@color/white_0"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:textSize="20sp"
-                android:text="@string/constriant_layout"/>
-
-            <TextView
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_6c_green_ff33cc66"
+                android:text="@string/constriant_layout"
                 android:textColor="@color/white_0"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
                 android:textSize="20sp"
-                android:text="@string/constriant_layout"/>
-        </LinearLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loading_dialog" />
+        </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

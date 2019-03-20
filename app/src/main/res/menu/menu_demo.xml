@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/emun_1"
+        android:title="enum1"
+        android:onClick="onClickEnum1"
+        android:showAsAction="withText"
+        />
+
+</menu>

@@ -1,6 +1,7 @@
 package com.example.forev.mycodelibrary;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -26,5 +27,10 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onDestroy() {
         mUnbinder.unbind();
         super.onDestroy();
+    }
+
+    public void openActivity(Class activityClass) {
+        Intent intent = new Intent(this, activityClass);
+        this.startActivity(intent);
     }
 }
