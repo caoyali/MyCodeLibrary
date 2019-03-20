@@ -21,6 +21,8 @@ public class SortAlgorithmAct extends BaseActivity {
     TextView mQuickSortResult;
     @BindView(R.id.mEasyInserSortResult)
     TextView mEasyInsertSortResult;
+    @BindView(R.id.mShellSortResult)
+    TextView mShellSortResult;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_sort_algorithm;
@@ -41,7 +43,7 @@ public class SortAlgorithmAct extends BaseActivity {
         printArray(mNumbers, mNumbersTextView);
     }
 
-    @OnClick({R.id.mPopSort, R.id.mQuickSort, R.id.mEasyInsertSort})
+    @OnClick({R.id.mPopSort, R.id.mQuickSort, R.id.mEasyInsertSort, R.id.mShellSort})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.mPopSort:
@@ -57,6 +59,9 @@ public class SortAlgorithmAct extends BaseActivity {
                 int[] nu1 = Arrays.copyOf(mNumbers, mNumbers.length);
                 easyInsertSort(nu1);
                 printArray(nu1, mEasyInsertSortResult);
+                break;
+            case R.id.mShellSort:
+
                 break;
         }
     }
@@ -104,9 +109,7 @@ public class SortAlgorithmAct extends BaseActivity {
                 int t;
                 if (numbers[i] > numbers[i+1]) {
                     //调换
-                    t = numbers[i];
-                    numbers[i] = numbers[i+1];
-                    numbers[i+1] = t;
+                    trans(numbers, i, i + 1);
                 }
             }
         }
@@ -171,41 +174,24 @@ public class SortAlgorithmAct extends BaseActivity {
 
     /**
      * 基本思想：
-
-     　　把n个待排序的元素看成一个有序表和一个无序表，开始时有序表中只有一个元素，无序表中有n-1个元素；排序过程即每次从无序表中取出第一个元素，将它插入到有序表中，使之成为新的有序表，重复n-1次完成整个排序过程。
-
+     　　把n个待排序的元素看成一个有序表和一个无序表，开始时有序表中只有一个元素，无序表中有n-1个元素；
+        排序过程即每次从无序表中取出第一个元素，将它插入到有序表中，使之成为新的有序表，重复n-1次完成整个排序过程。
      　实例：
-
      　　0.初始状态 3，1，5，7，2，4，9，6（共8个数）
-
      　　   有序表：3；无序表：1，5，7，2，4，9，6
-
      　　1.第一次循环，从无序表中取出第一个数 1，把它插入到有序表中，使新的数列依旧有序
-
      　　   有序表：1，3；无序表：5，7，2，4，9，6
-
      　　2.第二次循环，从无序表中取出第一个数 5，把它插入到有序表中，使新的数列依旧有序
-
      　　   有序表：1，3，5；无序表：7，2，4，9，6
-
      　　3.第三次循环，从无序表中取出第一个数 7，把它插入到有序表中，使新的数列依旧有序
-
      　　   有序表：1，3，5，7；无序表：2，4，9，6
-
      　　4.第四次循环，从无序表中取出第一个数 2，把它插入到有序表中，使新的数列依旧有序
-
      　　   有序表：1，2，3，5，7；无序表：4，9，6
-
      　　5.第五次循环，从无序表中取出第一个数 4，把它插入到有序表中，使新的数列依旧有序
-
      　　   有序表：1，2，3，4，5，7；无序表：9，6
-
      　　6.第六次循环，从无序表中取出第一个数 9，把它插入到有序表中，使新的数列依旧有序
-
      　　   有序表：1，2，3，4，5，7，9；无序表：6
-
      　　7.第七次循环，从无序表中取出第一个数 6，把它插入到有序表中，使新的数列依旧有序
-
      　　   有序表：1，2，3，4，5，6，7，9；无序表：（空）
      * @param ints
      */
