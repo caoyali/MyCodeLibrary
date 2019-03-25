@@ -186,6 +186,21 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mAlgorithmTest" />
+
+            <TextView
+                android:id="@+id/mThread"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_6c_green_ff33cc66"
+                android:gravity="center"
+                android:text="线程"
+                android:textColor="@color/bg_btn_select"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mSkill" />
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

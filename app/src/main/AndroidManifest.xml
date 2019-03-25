@@ -120,6 +120,7 @@
         <activity android:name=".AlgorithmTestAct"></activity>
         <activity android:name=".SortAlgorithmAct"></activity>
         <activity android:name=".SkillActivity"></activity>
+        <activity android:name=".ThreadActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
