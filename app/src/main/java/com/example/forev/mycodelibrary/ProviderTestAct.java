@@ -15,11 +15,14 @@ public class ProviderTestAct extends BaseActivity {
     protected void initView() {
     }
 
-    @OnClick({R.id.mUserConfig})
+    @OnClick({R.id.mUserConfig, R.id.mSystemImageDemo})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.mUserConfig:
                 openActivity(UserDocumentProviderTestAct.class);
+                break;
+            case R.id.mSystemImageDemo:
+                openActivity(SystemImageProviderDemo.class);
                 break;
         }
     }

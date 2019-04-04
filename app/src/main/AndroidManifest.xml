@@ -123,6 +123,7 @@
         <activity android:name=".ThreadActivity"></activity>
         <activity android:name=".MemoryActivity"></activity>
         <activity android:name=".UserDocumentProviderTestAct"></activity>
+        <activity android:name=".SystemImageProviderDemo"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
