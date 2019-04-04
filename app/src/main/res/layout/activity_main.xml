@@ -201,6 +201,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mSkill" />
+
+            <TextView
+                android:id="@+id/mMemory"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_6c_green_ff33cc66"
+                android:gravity="center"
+                android:text="内存"
+                android:textColor="@color/bg_btn_select"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mThread" />
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

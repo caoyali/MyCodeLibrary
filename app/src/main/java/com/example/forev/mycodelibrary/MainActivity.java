@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity{
 
     @OnClick({R.id.animation_btn, R.id.view, R.id.mSelectFileBtn, R.id.mReflex, R.id.mPermissionRequest,
     R.id.mHookTest, R.id.mProviderTest, R.id.mServiceTest, R.id.mAlgorithmTest,
-    R.id.mSkill, R.id.mThread})
+    R.id.mSkill, R.id.mThread, R.id.mMemory})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.animation_btn:
@@ -61,6 +61,9 @@ public class MainActivity extends BaseActivity{
                 break;
             case R.id.mThread:
                 openActivity(ThreadActivity.class);
+                break;
+            case R.id.mMemory:
+                openActivity(MemoryActivity.class);
                 break;
         }
     }
