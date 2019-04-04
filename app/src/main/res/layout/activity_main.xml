@@ -135,11 +135,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
                 android:gravity="center"
-                android:text="测试内容提供程序"
+                android:text="内容提供程序"
                 android:textColor="@color/bg_btn_select"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mHookTest" />
+                app:layout_constraintTop_toBottomOf="@+id/mMemory" />
 
             <TextView
                 android:id="@+id/mServiceTest"
@@ -150,11 +150,12 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="服务生命周期"
                 android:textColor="@color/bg_btn_select"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mProviderTest" />
+                app:layout_constraintTop_toBottomOf="@+id/mHookTest" />
 
             <TextView
                 android:id="@+id/mAlgorithmTest"
@@ -216,6 +217,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mThread" />
+
+            <TextView
+                android:id="@+id/mServer"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_6c_green_ff33cc66"
+                android:gravity="center"
+                android:text="服务"
+                android:textColor="@color/bg_btn_select"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mProviderTest" />
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

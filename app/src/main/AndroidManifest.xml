@@ -122,6 +122,7 @@
         <activity android:name=".SkillActivity"></activity>
         <activity android:name=".ThreadActivity"></activity>
         <activity android:name=".MemoryActivity"></activity>
+        <activity android:name=".UserDocumentProviderTestAct"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
