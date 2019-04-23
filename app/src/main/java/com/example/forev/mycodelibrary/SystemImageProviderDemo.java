@@ -37,7 +37,7 @@ public class SystemImageProviderDemo extends BaseActivity {
     protected void initView() {
     }
 
-    @OnClick({R.id.mGoSysImage})
+    @OnClick({R.id.mGoSysImage,  R.id.mCreateDocument})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.mGoSysImage:
@@ -45,6 +45,12 @@ public class SystemImageProviderDemo extends BaseActivity {
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("image/*");
                 startActivityForResult(intent, READ_REQUEST_CODE);
+                break;
+            case R.id.mCreateDocument:
+                Intent intent1 = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+                intent1.setType("*/*");
+                intent1.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(intent1, READ_REQUEST_CODE);
                 break;
         }
     }
