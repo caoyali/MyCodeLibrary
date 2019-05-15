@@ -20,9 +20,9 @@
                 android:id="@+id/animation_btn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
@@ -37,9 +37,9 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
@@ -150,9 +150,9 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_6c_green_ff33cc66"
                 android:gravity="center"
-                android:visibility="gone"
                 android:text="服务生命周期"
                 android:textColor="@color/bg_btn_select"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mHookTest" />
@@ -232,6 +232,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mProviderTest" />
+
+            <TextView
+                android:id="@+id/mKotlin"
+                android:layout_width="395dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_6c_green_ff33cc66"
+                android:gravity="center"
+                android:text="kotlin"
+                android:textColor="@color/bg_btn_select"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mServer" />
+
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

@@ -106,9 +106,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewListActivity" />
+        <!--当 activity 是 栈的根节点的时候，如果设置 android:excludeFromRecents="true" 代表不放在概览屏幕中
+        这个潜在意思是，当 你退掉或者点击显示概览屏幕的时候，当前的activity会被删除-->
         <activity android:name=".AppCompatActivitySub"
-            android:launchMode="singleTask"
-            android:taskAffinity=".AppCompatActivitySub">
+            android:taskAffinity=".AppCompatActivitySub"
+            android:launchMode="singleInstance"
+            android:label="@string/lambda">
 
         </activity>
 
@@ -124,6 +127,7 @@
         <activity android:name=".MemoryActivity"></activity>
         <activity android:name=".UserDocumentProviderTestAct"></activity>
         <activity android:name=".SystemImageProviderDemo"></activity>
+        <activity android:name=".MyScrollViewActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

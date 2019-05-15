@@ -33,21 +33,30 @@ public class AppCompatActivitySub extends BaseActivity {
 
         mConset1.clone(mRoot);
         mConset2.clone(this, R.layout.activity_constraint_test_2);
-
     }
 
-    @OnClick({R.id.mBtn})
+    @OnClick({R.id.rootView, R.id.mBtn, R.id.mBtn2})
     public void onClick(View v){
-        if (isChanged){
-            TransitionManager.beginDelayedTransition(mRoot);
-            mConset1.applyTo(mRoot);
-            isChanged = false;
-        } else {
-            AutoTransition transition = new AutoTransition();
-            transition.setDuration(300);
-            TransitionManager.beginDelayedTransition(mRoot,transition);
-            mConset2.applyTo(mRoot);
-            isChanged = true;
+        switch (v.getId()){
+            case R.id.rootView:
+                if (isChanged){
+                    TransitionManager.beginDelayedTransition(mRoot);
+                    mConset1.applyTo(mRoot);
+                    isChanged = false;
+                } else {
+                    AutoTransition transition = new AutoTransition();
+                    transition.setDuration(300);
+                    TransitionManager.beginDelayedTransition(mRoot,transition);
+                    mConset2.applyTo(mRoot);
+                    isChanged = true;
+                }
+                break;
+            case R.id.mBtn:
+                ViewListActivity.openActivity(this);
+                break;
+            case R.id.mBtn2:
+                openActivity(ReflexDemoAct.class);
+                break;
         }
 
     }

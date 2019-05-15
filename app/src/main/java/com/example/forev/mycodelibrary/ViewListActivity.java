@@ -24,8 +24,7 @@ public class ViewListActivity extends BaseActivity {
         activity.startActivity(intent);
     }
 
-    @OnClick({R.id.loading_dialog,
-            R.id.constriant_layout})
+    @OnClick({R.id.loading_dialog, R.id.constriant_layout, R.id.mOpenNowAct, R.id.mCustomViewDemo})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.constriant_layout:
@@ -34,6 +33,12 @@ public class ViewListActivity extends BaseActivity {
             case R.id.loading_dialog:
                 DialogFragmentUtils.showCommonLoadingDialog(getApplicationContext(),
                         getFragmentManager(), "hahah");
+                break;
+            case R.id.mOpenNowAct:
+                openActivity(this);
+                break;
+            case R.id.mCustomViewDemo:
+                openActivity(MyScrollViewActivity.class);
                 break;
         }
     }
