@@ -2,6 +2,7 @@ package com.example.forev.mycodelibrary;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.animation.FloatEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -9,6 +10,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.style.UpdateAppearance;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import com.example.forev.mycodelibrary.animation.MyRotateAnimation;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class AnimitionScaleAct extends BaseActivity {
     @BindView(R.id.image)
@@ -28,6 +32,8 @@ public class AnimitionScaleAct extends BaseActivity {
     ImageView mObjAnimator;
     @BindView(R.id.objectAnimator1)
     ImageView mObjectAnomator1;
+    @BindView(R.id.animatopnSet)
+    ImageView mAnimatorSet;
 
     @Override
     protected int getLayoutId() {
@@ -78,6 +84,7 @@ public class AnimitionScaleAct extends BaseActivity {
             public void onAnimationUpdate(ValueAnimator animation) {
                 //这个值是Animator 结合你开始设定的范围，及时间，来算出来的。
                 float animatedValue = (float) animation.getAnimatedValue();
+                //这个值好像是进行到几分之几的描述
                 float per = animation.getAnimatedFraction();
                 mObjAnimator.setTranslationX(animatedValue);
                 mObjAnimator.setAlpha(per);
@@ -90,9 +97,48 @@ public class AnimitionScaleAct extends BaseActivity {
         //在父类的基础上，可以更便捷的调用相应view相应的事务。
         //其中控制的属性名称，如XXX，指的是你的被控制Object，必须有一个对应的setXXX方法,这样动画才会通过对应的
         //set方法，设置你这个Object的属性值。
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(mObjectAnomator1, "scaleX",  2f);
-        animator1.setDuration(500);
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(mObjectAnomator1, "scaleX",  1.0f, 0.8f, 0.6f, 0.0f, 0.5f, 1.0f, 2.0f);
+        animator1.setRepeatCount(3);
+        animator1.setDuration(1000);
         animator1.start();
+
+        playAnimatorSet();
+
+        mAnimatorSet.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEvent.ACTION_DOWN == event.getAction()){
+                    if (set.isRunning()){
+                        set.cancel();
+                    }
+                    set.start();
+                }
+                return false;
+            }
+        });
+    }
+
+    AnimatorSet set = new AnimatorSet();
+    private void playAnimatorSet(){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mAnimatorSet, "alpha", 0.0f, 0.5f, 1.0f);
+        objectAnimator.setDuration(300);
+
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(mAnimatorSet, "scaleX", 1.0f, 0.8f, 0.6f, 0.0f, 0.5f, 1.0f);
+        objectAnimator1.setDuration(300);
+
+        ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(mAnimatorSet, "scaleY", 1.0f, 0.8f, 0.6f, 0.0f, 0.5f, 1.0f);
+        objectAnimator3.setDuration(300);
+        set.play(objectAnimator).with(objectAnimator1).with(objectAnimator3);
+        set.start();
+    }
+
+    @OnClick({R.id.animatopnSet, R.id.button2})
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.button2:
+                openActivity(ViewGroupAnimatorActivity.class);
+                break;
+        }
     }
 
     public static void openActivity(Activity activity) {
