@@ -3,6 +3,7 @@ package com.example.forev.mycodelibrary;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.FloatEvaluator;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +26,8 @@ public class AnimitionScaleAct extends BaseActivity {
     ImageView mTweenAnim;
     @BindView(R.id.objectAnimator)
     ImageView mObjAnimator;
+    @BindView(R.id.objectAnimator1)
+    ImageView mObjectAnomator1;
 
     @Override
     protected int getLayoutId() {
@@ -49,6 +52,23 @@ public class AnimitionScaleAct extends BaseActivity {
         Animation tweenAnim = AnimationUtils.loadAnimation(this, R.anim.anim_demo);
         mTweenAnim.startAnimation(tweenAnim);
 
+        /**
+         * 属性动画，本质上是几个强大的计算程序，可以根据自定义的插值器或者其他的算法，计算出目前的
+         * 进展阶段，或者目前应该移动到什么地方，或者目前你的alpha应该计算出是多少。
+         * 其次作用才是针对对象的操作，及调用对应的setValueName()之类的方法。
+         * 至于你到底要采用什么展示的效果，这个得看你调用View API的技能了。这是View来做的！别想着
+         * 一个基本的Animator连画都给你画好。（XML除外哈，估计有对应的类）。
+         */
+
+        /**
+         * 另外一点可以看出，属性动画的解耦效果是杠杠的，计算与绘制分离！
+         */
+
+        //属性动画--原始类valueAnimator的使用方法。
+        //具有多种初始化方式，可以不绑定target，也就是此处的ImageView， 其最主要的目的是计算动画的整个过程中，
+        //每个阶段根据规则的出来的一个值。
+        //次要作用是，你可以通过绑定ImageView来默认对这个view进行操作。当然你如果想非常灵活的用，可以通过回调
+        //根据目前到了哪个过程，按照UI给定的效果，调用相应的Translation。
         //这里面的 -500 ~ 0 需要说明一下， 此处的开始处，针对的坐标是被操纵界面的左上角点。而位置是相对位置！！
         ValueAnimator valueAnimator = ValueAnimator.ofObject(new FloatEvaluator(), -500, 0);
         valueAnimator.setDuration(2000);
@@ -58,10 +78,21 @@ public class AnimitionScaleAct extends BaseActivity {
             public void onAnimationUpdate(ValueAnimator animation) {
                 //这个值是Animator 结合你开始设定的范围，及时间，来算出来的。
                 float animatedValue = (float) animation.getAnimatedValue();
+                float per = animation.getAnimatedFraction();
                 mObjAnimator.setTranslationX(animatedValue);
+                mObjAnimator.setAlpha(per);
             }
         });
         valueAnimator.start();
+
+
+        //valueAnimator子类--ObjectAnimator。
+        //在父类的基础上，可以更便捷的调用相应view相应的事务。
+        //其中控制的属性名称，如XXX，指的是你的被控制Object，必须有一个对应的setXXX方法,这样动画才会通过对应的
+        //set方法，设置你这个Object的属性值。
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(mObjectAnomator1, "scaleX",  2f);
+        animator1.setDuration(500);
+        animator1.start();
     }
 
     public static void openActivity(Activity activity) {
