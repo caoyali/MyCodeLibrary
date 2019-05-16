@@ -35,7 +35,6 @@ public class MyScrollView extends View {
         mGestureDetector = new GestureDetector(getContext(), new GestureDetector.OnGestureListener() {
             @Override
             public boolean onDown(MotionEvent e) {
-                Toast.makeText(getContext(), "down le", 500).show();
                 return true;
             }
 
@@ -61,10 +60,11 @@ public class MyScrollView extends View {
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                Toast.makeText(getContext(), "filing...", 500).show();
                int cx = mScroller.getCurrX();
                int cy = mScroller.getCurrY();
-                mScroller.fling(cx, cy,(int)velocityX / 3, (int)velocityY/3, 4, 8, 0, 0);
-                scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+               //scroll是一个帮助计算的辅助类
+                mScroller.fling(cx, cy,(int)velocityX / 3, (int)velocityY/3, 4, 8, 4, 8);
                 postInvalidate();
                 return true;
             }
@@ -78,6 +78,7 @@ public class MyScrollView extends View {
                     mScroller.computeScrollOffset();
                 } else {
                     mScrollAnimator.cancel();
+//                    onScrollFinished();
                 }
             }
         });
@@ -90,12 +91,6 @@ public class MyScrollView extends View {
         int w = 1000;
         int h = 5000;
         setMeasuredDimension(w, h);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-
     }
 
     @Override
@@ -116,6 +111,7 @@ public class MyScrollView extends View {
 
         Rect rect = new Rect(0, 0, getWidth(), getHeight());
         canvas.drawRect(rect, mBackgroundPaint);
+        mScrollAnimator.start();
     }
 
     @Override
