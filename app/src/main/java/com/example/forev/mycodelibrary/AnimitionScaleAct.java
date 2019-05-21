@@ -8,12 +8,16 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Path;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.text.style.UpdateAppearance;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.PathInterpolator;
 import android.widget.ImageView;
 
 import com.example.forev.mycodelibrary.animation.MyRotateAnimation;
@@ -34,6 +38,10 @@ public class AnimitionScaleAct extends BaseActivity {
     ImageView mObjectAnomator1;
     @BindView(R.id.animatopnSet)
     ImageView mAnimatorSet;
+    @BindView(R.id.mObjAnimatorUsePathInter)
+    ImageView mObjAnimatorUsePathInter;
+
+    AnimatorSet set = new AnimatorSet();
 
     @Override
     protected int getLayoutId() {
@@ -116,9 +124,24 @@ public class AnimitionScaleAct extends BaseActivity {
                 return false;
             }
         });
+
+        //相对高级的一种动画，利用objectAnimator和PathInterpolator完成效果目前不知
+        Path path = new Path();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //贝塞尔取现
+            path.cubicTo(0.2f,0f,0.1f,1f,0.5f,1f);
+            path.lineTo(1f,1f);
+            PathInterpolator pathInterpolator = new PathInterpolator(path);
+            ObjectAnimator interpolatorAnimation = ObjectAnimator.ofFloat(mObjAnimatorUsePathInter,
+                    "translationX", 200f, 0f, -200f, 0f);
+            interpolatorAnimation.setInterpolator(pathInterpolator);
+            interpolatorAnimation.setDuration(5000);
+            interpolatorAnimation.start();
+
+        }
+
     }
 
-    AnimatorSet set = new AnimatorSet();
     private void playAnimatorSet(){
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mAnimatorSet, "alpha", 0.0f, 0.5f, 1.0f);
         objectAnimator.setDuration(300);
@@ -130,6 +153,8 @@ public class AnimitionScaleAct extends BaseActivity {
         objectAnimator3.setDuration(300);
         set.play(objectAnimator).with(objectAnimator1).with(objectAnimator3);
         set.start();
+
+
     }
 
     @OnClick({R.id.animatopnSet, R.id.button2})
