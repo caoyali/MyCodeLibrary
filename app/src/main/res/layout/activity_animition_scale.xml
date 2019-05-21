@@ -157,6 +157,7 @@
                 android:id="@+id/mObjAnimatorUsePathInter"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginTop="8dp"
                 android:src="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,6 +172,36 @@
                 app:layout_constraintBottom_toBottomOf="@+id/mObjAnimatorUsePathInter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/mObjAnimatorUsePathInter" />
+
+            <ImageView
+                android:id="@+id/mSpringAnimator"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:src="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mObjAnimatorUsePathInter" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="弹簧动画，纯代码"
+                android:textSize="5sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mSpringAnimator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mSpringAnimator" />
+
+            <ImageView
+                android:id="@+id/mSpringAnimator1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:src="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="@+id/mSpringAnimator"
+                app:layout_constraintStart_toStartOf="@+id/mSpringAnimator"
+                app:layout_constraintTop_toBottomOf="@+id/mSpringAnimator" />
 
             <Button
                 android:id="@+id/button2"

@@ -11,9 +11,14 @@ import android.content.Intent;
 import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.animation.DynamicAnimation;
+import android.support.animation.SpringAnimation;
+import android.support.animation.SpringForce;
 import android.support.annotation.RequiresApi;
 import android.text.style.UpdateAppearance;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -40,8 +45,14 @@ public class AnimitionScaleAct extends BaseActivity {
     ImageView mAnimatorSet;
     @BindView(R.id.mObjAnimatorUsePathInter)
     ImageView mObjAnimatorUsePathInter;
+    @BindView(R.id.mSpringAnimator)
+    ImageView mSpringAnimator;
+    @BindView(R.id.mSpringAnimator1)
+    ImageView mSpringAnimator1;
 
     AnimatorSet set = new AnimatorSet();
+    //一个计算速率的工具类。很纯粹的计算速率而已
+    VelocityTracker velocityTracker = null;
 
     @Override
     protected int getLayoutId() {
@@ -65,6 +76,7 @@ public class AnimitionScaleAct extends BaseActivity {
 
         Animation tweenAnim = AnimationUtils.loadAnimation(this, R.anim.anim_demo);
         mTweenAnim.startAnimation(tweenAnim);
+
 
         /**
          * 属性动画，本质上是几个强大的计算程序，可以根据自定义的插值器或者其他的算法，计算出目前的
@@ -128,7 +140,7 @@ public class AnimitionScaleAct extends BaseActivity {
         //相对高级的一种动画，利用objectAnimator和PathInterpolator完成效果目前不知
         Path path = new Path();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //贝塞尔取现
+            //贝塞尔曲线
             path.cubicTo(0.2f,0f,0.1f,1f,0.5f,1f);
             path.lineTo(1f,1f);
             PathInterpolator pathInterpolator = new PathInterpolator(path);
@@ -139,6 +151,98 @@ public class AnimitionScaleAct extends BaseActivity {
             interpolatorAnimation.start();
 
         }
+
+        //对于弹簧动画，怎么弹，SpringAnimation会帮你解决。在此处我们延伸了一个VelocityTracker的用法
+        //这个类针对于你的手势有强大的计算作用，采用的是native层实现计算，很强大且快速！尽管目前没有切切实实的用到
+        //（没有用到动画上）,但是这个依然很强大，希望以后有机会用到。
+        final int finalPosition = 1000;
+        final SpringAnimation anim1X = new SpringAnimation(mSpringAnimator, DynamicAnimation.TRANSLATION_X,  finalPosition);
+        final SpringAnimation anim1Y = new SpringAnimation(mSpringAnimator, DynamicAnimation.TRANSLATION_Y, finalPosition);
+        final SpringAnimation anim2X = new SpringAnimation(mSpringAnimator1, DynamicAnimation.TRANSLATION_X, finalPosition);
+        final SpringAnimation anim2Y = new SpringAnimation(mSpringAnimator1, DynamicAnimation.TRANSLATION_Y, finalPosition);
+
+        anim1X.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+            @Override
+            public void onAnimationUpdate(DynamicAnimation animation, float value, float velocity) {
+                anim2X.animateToFinalPosition(value);
+            }
+        });
+
+        anim1Y.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+            @Override
+            public void onAnimationUpdate(DynamicAnimation animation, float value, float velocity) {
+                anim2Y.animateToFinalPosition(value);
+            }
+        });
+
+        SpringForce springForce1X = anim1X.getSpring();
+        springForce1X.setDampingRatio(SpringForce.DAMPING_RATIO_NO_BOUNCY);
+        springForce1X.setStiffness(SpringForce.STIFFNESS_LOW);
+        SpringForce springForce1Y = anim2Y.getSpring();
+        springForce1Y.setDampingRatio(SpringForce.DAMPING_RATIO_NO_BOUNCY);
+        springForce1Y.setStiffness(SpringForce.STIFFNESS_LOW);
+
+        anim2X.getSpring().setStiffness(SpringForce.STIFFNESS_MEDIUM);
+        anim2X.getSpring().setDampingRatio(SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY);
+        anim2Y.getSpring().setStiffness(SpringForce.STIFFNESS_MEDIUM);
+        anim2Y.getSpring().setDampingRatio(SpringForce.DAMPING_RATIO_MEDIUM_BOUNCY);
+
+        final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.OnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                velocityTracker.computeCurrentVelocity(1000);
+                float velocity = velocityTracker.getYVelocity();
+                anim1X.animateToFinalPosition(e2.getX());
+                anim1Y.animateToFinalPosition(e2.getY());
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                return false;
+            }
+        });
+        mSpringAnimator.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        velocityTracker.recycle();
+                        anim1X.animateToFinalPosition(0);
+                        anim1Y.animateToFinalPosition(0);
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        velocityTracker = VelocityTracker.obtain();
+                        velocityTracker.addMovement(event);
+                        break;
+                        default:
+                            velocityTracker.addMovement(event);
+                            break;
+                }
+                return gestureDetector.onTouchEvent(event);
+            }
+        });
 
     }
 
