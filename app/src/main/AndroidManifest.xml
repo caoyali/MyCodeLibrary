@@ -93,7 +93,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ViewGroupAnimatorActivity"></activity>
+
+        <activity android:name=".ViewGroupAnimatorActivity" />
 
         <uses-library android:name="android.test.runner" />
 
@@ -116,7 +117,7 @@
             android:name=".AppCompatActivitySub"
             android:label="@string/lambda"
             android:launchMode="singleInstance"
-            android:taskAffinity=".AppCompatActivitySub"></activity>
+            android:taskAffinity=".AppCompatActivitySub" />
         <activity android:name=".DrawableDemoAct" />
         <activity android:name=".ReflexDemoAct" />
         <activity android:name=".HookTestAct" />
