@@ -50,4 +50,20 @@ public class LogUtil {
         return builder.toString();
     }
 
+    public void logSmallDiv(){
+        Log.d(TAG,dealMsg("-------------------------------------------------------------------------") );
+    }
+
+    public void logBigDiv(){
+        Log.d(TAG, dealMsg("==========================================================================="));
+    }
+
+    public void logSmallDiv(String simpleMsg){
+        Log.d(TAG,dealMsg("-------------------------------------------------------------------------" + simpleMsg) );
+    }
+
+    public void logBigDiv(String simpleMsg){
+        Log.d(TAG, dealMsg("==========================================================================="+ simpleMsg));
+    }
+
 }

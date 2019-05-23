@@ -12,14 +12,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.OverScroller;
 import android.widget.Scroller;
-
-import static android.view.ViewConfiguration.*;
 
 /**
  * 总结，如果你想写一个可以滚动的视图，利用scrollTo这种方法的话，那么很不幸，
