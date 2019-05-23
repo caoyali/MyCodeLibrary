@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MyScrollViewActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,40 +13,49 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/progress_bar_gray_background_green_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="Button"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:layout_marginBottom="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/progress_bar_gray_background_green_foreground"
+            >
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="Button"
-            android:layout_gravity="center" />
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Button"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="250dp"
+                android:layout_marginLeft="10dp"/>
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:layout_gravity="left|center" />
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="Button"
+                android:layout_gravity="center" />
 
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:layout_gravity="right|center" />
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:layout_gravity="left|center" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:layout_gravity="right|center" />
+        </FrameLayout>
     </com.example.forev.mycodelibrary.utils.MyScrollView>
 
 </android.support.constraint.ConstraintLayout>
