@@ -1,29 +1,32 @@
 package com.example.forev.mycodelibrary.utils;
 
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Scroller;
-import android.widget.Toast;
 
-import com.example.forev.mycodelibrary.R;
-
-public class MyScrollView extends View {
+/**
+ * 总结，如果你想写一个可以滚动的视图，利用scrollTo这种方法的话，那么很不幸，
+ * 这个方法只会导致当前viewGroup里面的子视图滚动，指的并不是自己本身滚动！
+ * 就像一个固定的框，下面压着一个画了图片的布，你用scrollTo  或者 scrollBy
+ * 只不过执行了一个类似于扯布的操作！这种操作引发这个框里的图片发生了位置上的变化。
+ * 但是事实上框（ViewGroup）还是框，没什么根本的变化！一定不要和属性动画混淆，这两者完全两码事
+ * 之前我就混淆了！
+ * 另外注意的一点是，既然这个原理好比来回移动画布的话，那么很明显了，当进行scroll的时候，
+ * 里面所有的子视图的位置，根本没有发生任何改变！要做的只不过是设置一下画布与屏幕的位置，然后重绘界面，即可！
+ * 所以总结下来，scroll操作，没有改变任何关键视图的任何属性！
+ */
+public class MyScrollView extends FrameLayout {
 
     Paint mBackgroundPaint;
     GestureDetector mGestureDetector;
     Scroller mScroller;
-    ValueAnimator mScrollAnimator;
 
     public MyScrollView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -50,6 +53,9 @@ public class MyScrollView extends View {
 
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                //动画完成了
+                mScroller.startScroll(0, getScrollY(), 0, (int)distanceY);
+                invalidate();
                 return false;
             }
 
@@ -60,63 +66,33 @@ public class MyScrollView extends View {
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                Toast.makeText(getContext(), "filing...", 500).show();
-               int cx = mScroller.getCurrX();
-               int cy = mScroller.getCurrY();
-               //scroll是一个帮助计算的辅助类
-                mScroller.fling(cx, cy,(int)velocityX / 3, (int)velocityY/3, 4, 8, 4, 8);
-                postInvalidate();
-                return true;
+                return false;
             }
         });
-        mScroller = new Scroller(getContext(), null, true);
-        mScrollAnimator = ValueAnimator.ofFloat(0, 1);
-        mScrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                if (!mScroller.isFinished()){
-                    mScroller.computeScrollOffset();
-                } else {
-                    mScrollAnimator.cancel();
-//                    onScrollFinished();
-                }
-            }
-        });
+        mScroller = new Scroller(getContext());
 
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int w = 1000;
-        int h = 5000;
-        setMeasuredDimension(w, h);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (null == mBackgroundPaint.getShader()){
-            int color1 = getContext().getResources().getColor(R.color.gray_5_FFD8D8D8);
-            int color2 = getContext().getResources().getColor(R.color.red_3_FFFF3B30);
-            int color3 = getContext().getResources().getColor(R.color.purple_0_FF9598FF);
-            int color4 = getContext().getResources().getColor(R.color.aqms_level_5);
-            int color5  = getContext().getResources().getColor(R.color.blue_0_FF007AFF);
-            int[] colors = new int[]{color1, color2, color3, color4, color5};
-            LinearGradient linearGradient = new LinearGradient(0, 0, getWidth(), getHeight(), colors, null, Shader.TileMode.MIRROR);
-            mBackgroundPaint.setShader(linearGradient);
-            mBackgroundPaint.setStyle(Paint.Style.FILL);
-            mBackgroundPaint.setColor(color5);
-        }
-
-        Rect rect = new Rect(0, 0, getWidth(), getHeight());
-        canvas.drawRect(rect, mBackgroundPaint);
-        mScrollAnimator.start();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean isConsume = mGestureDetector.onTouchEvent(event);
         return isConsume;
+    }
+
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()){
+            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+        }
     }
 }

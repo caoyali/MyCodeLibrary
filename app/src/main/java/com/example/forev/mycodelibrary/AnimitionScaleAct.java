@@ -155,7 +155,7 @@ public class AnimitionScaleAct extends BaseActivity {
         //对于弹簧动画，怎么弹，SpringAnimation会帮你解决。在此处我们延伸了一个VelocityTracker的用法
         //这个类针对于你的手势有强大的计算作用，采用的是native层实现计算，很强大且快速！尽管目前没有切切实实的用到
         //（没有用到动画上）,但是这个依然很强大，希望以后有机会用到。
-        final int finalPosition = 1000;
+        final int finalPosition = 10000;
         final SpringAnimation anim1X = new SpringAnimation(mSpringAnimator, DynamicAnimation.TRANSLATION_X,  finalPosition);
         final SpringAnimation anim1Y = new SpringAnimation(mSpringAnimator, DynamicAnimation.TRANSLATION_Y, finalPosition);
         final SpringAnimation anim2X = new SpringAnimation(mSpringAnimator1, DynamicAnimation.TRANSLATION_X, finalPosition);
@@ -206,7 +206,10 @@ public class AnimitionScaleAct extends BaseActivity {
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                 velocityTracker.computeCurrentVelocity(1000);
-                float velocity = velocityTracker.getYVelocity();
+                float velocityY = velocityTracker.getYVelocity();
+                float velocityX = velocityTracker.getXVelocity();
+                anim1X.setStartVelocity(velocityX);
+                anim1Y.setStartVelocity(velocityY);
                 anim1X.animateToFinalPosition(e2.getX());
                 anim1Y.animateToFinalPosition(e2.getY());
                 return false;
