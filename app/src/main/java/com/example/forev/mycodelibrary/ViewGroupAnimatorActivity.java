@@ -118,5 +118,4 @@ public class ViewGroupAnimatorActivity extends BaseActivity implements View.OnCl
         }
 
     }
-
 }
