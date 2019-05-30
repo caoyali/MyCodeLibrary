@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <declare-styleable name="AttractedScrollView">
+        <attr name="layout_id_top" format="reference"></attr>
+        <attr name="layout_id_bottom" format="reference"></attr>
+    </declare-styleable>
+
 </resources>

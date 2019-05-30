@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="force_view_top">0</item>
-    <item type="id" name="force_view_bottom">1</item>
+    <item type="id" name="attracted_scroll_view_top"/>
+    <item type="id" name="attracted_scroll_view_bottom"/>
 </resources>
