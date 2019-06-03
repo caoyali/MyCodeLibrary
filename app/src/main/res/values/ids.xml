@@ -2,4 +2,5 @@
 <resources>
     <item type="id" name="attracted_scroll_view_top"/>
     <item type="id" name="attracted_scroll_view_bottom"/>
+    <item type="id" name="attracted_scroll_view_center"/>
 </resources>

@@ -81,8 +81,9 @@
 		<attr name="circle_fill" format="color"/>
 	</declare-styleable>
 
-	<declare-styleable name="ForceTopView">
+	<declare-styleable name="AttractedScrollView">
 		<attr name="layout_id_top" format="reference"></attr>
 		<attr name="layout_id_bottom" format="reference"></attr>
+		<attr name="layout_id_center" format="reference"></attr>
 	</declare-styleable>
 </resources>

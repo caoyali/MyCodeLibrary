@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.forev.mycodelibrary.utils.ForceTopView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.forev.mycodelibrary.simpleView.AttractedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mRootView"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +8,6 @@
     android:animateLayoutChanges="true"
     tools:context=".ViewGroupAnimatorActivity"
     app:layout_id_top="@layout/top_view"
-    app:layout_id_bottom="@layout/bottom_view"
-    >
+    app:layout_id_bottom="@layout/bottom_view">
 
-</com.example.forev.mycodelibrary.utils.ForceTopView>
+</com.example.forev.mycodelibrary.simpleView.AttractedScrollView>

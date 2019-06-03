@@ -6,7 +6,7 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.forev.mycodelibrary.utils.ForceTopView;
+import com.example.forev.mycodelibrary.simpleView.AttractedScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import butterknife.BindView;
  */
 public class ViewGroupAnimatorActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.mRootView)
-    ForceTopView mRootView;
+    AttractedScrollView mRootView;
     ListView listView;
     private boolean isReadyToScroll;
 
@@ -65,7 +65,7 @@ public class ViewGroupAnimatorActivity extends BaseActivity implements View.OnCl
 //                                return;
 //                            }
 //                            mRootView.moveTopViewIn();
-                            mRootView.setChildRequestIntercept(true);
+//                            mRootView.setChildRequestIntercept(true);
 //                            isReadyToScroll = false;
                             //TODO
                         }

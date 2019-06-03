@@ -7,27 +7,38 @@
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/mTopCons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/mBottomCons">
+        android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mBottomCons"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/mCenterCons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_green"
-        app:layout_constraintTop_toBottomOf="@+id/mTopCons"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:background="#EDEDED"
+        >
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mCenterBg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/mBottomCons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>
