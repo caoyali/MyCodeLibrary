@@ -2,6 +2,7 @@ package com.example.forev.mycodelibrary.simpleView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.support.animation.DynamicAnimation;
 import android.support.animation.SpringAnimation;
 import android.support.animation.SpringForce;
@@ -24,6 +25,7 @@ public class AttractedScrollView extends LinearLayout {
 
     final static float PER_HEIGHT_ALPHA = 0.25f;
     final static float PER_HEIGHT_ATTRACTED = 0.17f;
+    final static int FLING = 8;
     private GestureDetector mGestureDetector;
     private SpringAnimation mTopYAnimation;
     private ConstraintLayout mTopCons;
@@ -31,9 +33,11 @@ public class AttractedScrollView extends LinearLayout {
     private ConstraintLayout mCenterCons;
     private ConstraintLayout mCenterConsBg;
     private Scroller mScroller;
-    private boolean mIsRootViewInterceptMode = false;
     private int mScreenHeight;
     private LayoutInflater mInflater;
+    //表示bottom需要处理自己的滑动事件，父布局无需滑动。
+    private static boolean isBottomRequestScroll = false;
+    private static OnScrollListener sOnScrollListener;
 
     public AttractedScrollView(Context context) {
         super(context, null, 0);
@@ -80,26 +84,36 @@ public class AttractedScrollView extends LinearLayout {
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                 resetBottomIfNeed();
                 int topViewHeight = mTopCons.getHeight();
-                mScroller.computeScrollOffset();
-                if (mIsRootViewInterceptMode) {
-                    mScroller.startScroll(mScroller.getFinalX(), mScroller.getFinalY(), 0, 0);
-                    mIsRootViewInterceptMode = false;
+                int startY = mScroller.getFinalY();
+                if (isBottomRequestScroll && startY == -topViewHeight) {
+                    isBottomRequestScroll = false;
                     return false;
                 }
+                mScroller.computeScrollOffset();
                 mScroller.startScroll(mScroller.getFinalX(), mScroller.getFinalY(), 0, -(int) distanceY);
 
                 int finalTop = mScroller.getFinalY();
+
                 if (finalTop < (-topViewHeight)) {
                     mScroller.setFinalY(-topViewHeight);
+                    if (mScroller.getFinalY() != startY){
+                        callListener(distanceY > 0);
+                    }
                     animateTopCons();
                     return false;
                 }
                 if (distanceY < 0) {
                     if (finalTop >= 0) {
                         mScroller.setFinalY(0);
+                        if (mScroller.getFinalY() != startY){
+                            callListener(distanceY > 0);
+                        }
                         animateTopCons();
                         return false;
                     }
+                }
+                if (mScroller.getFinalY() != startY){
+                    callListener(distanceY > 0);
                 }
                 animateTopCons();
                 return false;
@@ -113,8 +127,17 @@ public class AttractedScrollView extends LinearLayout {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 resetBottomIfNeed();
+                int startY = mScroller.getFinalY();
+                if (isBottomRequestScroll && startY == -mTopCons.getHeight()) {
+                    isBottomRequestScroll = false;
+                    return false;
+                }
                 if (Math.abs(velocityY) > Math.abs(velocityX)) {
-                    mScroller.fling(mScroller.getFinalX(), mScroller.getFinalY(), 0, (int) velocityY / 10, 0, 0, -(mTopCons.getHeight()), 0);
+                    mScroller.fling(mScroller.getFinalX(), mScroller.getFinalY(), 0,
+                            (int) velocityY / FLING, 0, 0, -(mTopCons.getHeight()), 0);
+                    if (mScroller.getFinalY() != startY){
+                        callListener(velocityY > 0);
+                    }
                     animateTopCons();
                 }
                 return false;
@@ -130,6 +153,12 @@ public class AttractedScrollView extends LinearLayout {
         addBottomChildToBottomCons(bottomId);
         addCenterChildToCenterCons(centerId);
         initAnimators();
+    }
+
+    private void callListener(boolean isUp){
+        if (null != sOnScrollListener){
+            sOnScrollListener.onScroll(isUp);
+        }
     }
 
     private void addTopChildToTopCons(int layoutId) {
@@ -217,7 +246,7 @@ public class AttractedScrollView extends LinearLayout {
         });
 
         SpringForce topSpringForce = mTopYAnimation.getSpring();
-        topSpringForce.setStiffness(SpringForce.STIFFNESS_HIGH);
+        topSpringForce.setStiffness(SpringForce.STIFFNESS_MEDIUM);
         topSpringForce.setDampingRatio(SpringForce.DAMPING_RATIO_NO_BOUNCY);
     }
 
@@ -226,22 +255,21 @@ public class AttractedScrollView extends LinearLayout {
         return true;
     }
 
+    //临时设置当前控件是否因某一子控件的特殊情况，而打断scroll动作，不进行滑动。
+    public static void isChildRequestScroll(boolean isScroll) {
+        isBottomRequestScroll = isScroll;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        int startY = mScroller.getFinalY();
+        int topViewHeight = mTopCons.getHeight();
+        ViewGroup viewGroup = (ViewGroup) getChildAt(0);
+        viewGroup.dispatchTouchEvent(event);
         boolean isDeal = mGestureDetector.onTouchEvent(event);
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = getChildAt(i);
-            if (child instanceof ViewGroup) {
-                child.dispatchTouchEvent(event);
-            } else {
-                child.onTouchEvent(event);
-            }
-        }
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
                 int y = mScroller.getFinalY();
-                int topViewHeight = mTopCons.getHeight();
                 if (Math.abs(y) > topViewHeight * (1.0 - PER_HEIGHT_ATTRACTED)) {
                     mScroller.setFinalY((int) -topViewHeight);
                     animateTopCons();
@@ -250,6 +278,15 @@ public class AttractedScrollView extends LinearLayout {
                 break;
         }
         return isDeal;
+    }
+
+    private boolean isInViewArea(View view, float x, float y) {
+        Rect r = new Rect();
+        view.getLocalVisibleRect(r);
+        if (x > r.left && x < r.right && y > r.top && y < r.bottom) {
+            return true;
+        }
+        return false;
     }
 
     private void animateTopCons() {
@@ -274,5 +311,13 @@ public class AttractedScrollView extends LinearLayout {
 
     public void cancelAllAnimators() {
         mTopYAnimation.cancel();
+    }
+
+    public static void setOnScrollListener(OnScrollListener listener){
+        sOnScrollListener = listener;
+    }
+
+    public interface OnScrollListener{
+        void onScroll(boolean isUp);
     }
 }
