@@ -93,9 +93,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <!--<activity android:name=".ViewGroupAnimatorActivity" />-->
-
+        <activity android:name=".AnswerCardAct"></activity>
+        <!-- <activity android:name=".ViewGroupAnimatorActivity" /> -->
         <uses-library android:name="android.test.runner" />
 
         <activity android:name=".AnimitionScaleAct" />
@@ -108,9 +107,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ViewGroupAnimatorActivity">
-        </activity>
+        <activity android:name=".ViewGroupAnimatorActivity"></activity>
         <activity android:name=".ViewListActivity" />
         <!--
 当 activity 是 栈的根节点的时候，如果设置 android:excludeFromRecents="true" 代表不放在概览屏幕中

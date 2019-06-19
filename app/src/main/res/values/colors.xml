@@ -72,5 +72,10 @@
 
     <color name="colorMainGreen">#40cab3</color>
 
+    <color name="easy_text_button_normal_bound">#FF9598FF</color>
+    <color name="easy_text_button_error_bound">#FFFF3B30</color>
+    <color name="easy_text_button_correct_bound">#FF21D39F</color>
+    <color name="answer_card_bg_color">#99000000</color>
+
 
 </resources>

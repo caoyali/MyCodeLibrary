@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--base-->
+    <style name="single_line">
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="bold_single_line" parent="single_line">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="end_single_line" parent="single_line">
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="end_single_line_16" parent="end_single_line">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="fra_answer_card_commit" parent="end_single_line_16">
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
 </resources>

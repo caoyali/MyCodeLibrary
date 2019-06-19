@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mRootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/answer_card_bg_color">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/mNativePanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_answer_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.example.forev.mycodelibrary.simpleView.EasyTestButton
+            android:id="@+id/mDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <GridLayout
+            android:id="@+id/mGridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="24dp"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDemo"/>
+        
+        <Button
+            android:id="@+id/mCommitBtn"
+            style="@style/fra_answer_card_commit"
+            android:layout_width="116dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="44dp"
+            android:textAlignment="center"
+            android:background="@drawable/bg_answer_card_commit_btn"
+            android:textDirection="ltr"
+            android:text="@string/fra_answer_card_commit_btn"
+            app:layout_constraintTop_toTopOf="@id/mGridLayout"
+            app:layout_constraintBottom_toBottomOf="@id/mGridLayout"
+            app:layout_constraintEnd_toEndOf="parent" />
+        
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/mWebViewPanel"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <WebView
+            android:id="@+id/mWebView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"></WebView>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

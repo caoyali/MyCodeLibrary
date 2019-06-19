@@ -104,6 +104,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mOpenNowAct" />
 
+            <TextView
+                android:id="@+id/mAnswerCardTest"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_6c_green_ff33cc66"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="学生答题卡涉及view"
+                android:textColor="@color/white_0"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mOpenNowAct" />
+
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
