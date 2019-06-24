@@ -28,4 +28,8 @@
     <style name="fra_answer_card_commit" parent="end_single_line_16">
         <item name="android:textColor">#FFFFFFFF</item>
     </style>
+
+    <style name="fra_answer_describe_text" parent="end_single_line_16">
+        <item name="android:textColor">#211F3F</item>
+    </style>
 </resources>

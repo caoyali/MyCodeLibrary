@@ -8,6 +8,10 @@
     <string name="permission_des">权限的具体解释</string>
     <string name="lambda">点击了lambda公式</string>
     <string name="fra_answer_card_commit_btn">提交</string>
+    <string name="fra_answer_card_congratulation_correct">恭喜你，回答正确!</string>
+    <string name="fra_answer_card_regret_error">很遗憾，回答错误。</string>
+    <string name="fra_answer_card_wait_teacher_receive">已提交，请等待老师收卷。</string>
+    <string name="fra_answer_card_answer_person_num">%1$d人</string>
 
     <!--字体相关key -->
     <string-array name="certs">
