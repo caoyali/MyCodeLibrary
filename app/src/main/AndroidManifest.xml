@@ -20,6 +20,11 @@
     <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI" /> <!-- 访问内容提供程序数据所需要的权限，会自动允许 -->
     <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
     <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <supports-screens
         android:anyDensity="false"
@@ -79,6 +84,7 @@
         android:targetProcesses="*" />
 
     <application
+        android:name=".LibraryApplication"
         android:allowBackup="false"
         android:allowClearUserData="false"
         android:allowTaskReparenting="true"
@@ -93,8 +99,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AnswerCardAct"></activity>
-        <!-- <activity android:name=".ViewGroupAnimatorActivity" /> -->
+        <activity android:name=".PercentActivity"
+            android:screenOrientation="landscape"
+            ></activity>
+        <activity android:name=".AnswerCardAct" /> <!-- <activity android:name=".ViewGroupAnimatorActivity" /> -->
         <uses-library android:name="android.test.runner" />
 
         <activity android:name=".AnimitionScaleAct" />
@@ -107,7 +115,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewGroupAnimatorActivity"></activity>
+        <activity android:name=".ViewGroupAnimatorActivity" />
         <activity android:name=".ViewListActivity" />
         <!--
 当 activity 是 栈的根节点的时候，如果设置 android:excludeFromRecents="true" 代表不放在概览屏幕中

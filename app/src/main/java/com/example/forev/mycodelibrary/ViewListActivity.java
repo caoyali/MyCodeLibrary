@@ -25,7 +25,7 @@ public class ViewListActivity extends BaseActivity {
     }
 
     @OnClick({R.id.loading_dialog, R.id.constriant_layout, R.id.mOpenNowAct, R.id.mCustomViewDemo,
-    R.id.mAnswerCardTest})
+    R.id.mAnswerCardTest, R.id.mPercent})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.constriant_layout:
@@ -43,6 +43,9 @@ public class ViewListActivity extends BaseActivity {
                 break;
             case R.id.mAnswerCardTest:
                 openActivity(AnswerCardAct.class);
+                break;
+            case R.id.mPercent:
+                openActivity(PercentActivity.class);
                 break;
         }
     }

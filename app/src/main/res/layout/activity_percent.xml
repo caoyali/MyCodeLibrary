@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mRootViewmRootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--本布局适用于 w:h < 16:9 的情况
+    设比例为： 16:12 那么
+    1 以16为基准，也就是宽度为基准，强制将界面拉取至16：9比例，那么高度会因此出现截取一部分的情况，虽然丑，但是可行
+    2 以12为基准，也就是高度为基准，强制拉取至16：9比例，那么宽度因此会出现拉伸并且溢出屏幕。不可取
+    综上所述：以宽度为固定基准，强制界面16：9 可行-->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/m169Panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/red_0_FFFF0000"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/m43Panel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/green_0"
+            app:layout_constraintDimensionRatio="4:3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/mTeacherVideoPanel"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Activity_percent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mTeacherVideoPanel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/aqms_level_1"
+            app:layout_constraintDimensionRatio="4:3"
+            app:layout_constraintStart_toEndOf="@id/m43Panel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="2:3"
+            app:layout_constraintTop_toBottomOf="@id/mTeacherVideoPanel"
+            app:layout_constraintStart_toEndOf="@id/m43Panel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
