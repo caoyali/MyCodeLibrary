@@ -6,29 +6,70 @@
     android:targetSandboxVersion="1"
     android:versionName="1.0.1">
 
-    <permission
-        android:name="com.example.forev.mycodelibrary.YAYALI"
-        android:description="@string/permission_des"
+    <application
+        android:name=".LibraryApplication"
+        android:allowClearUserData="false"
+        android:allowTaskReparenting="true"
+        android:banner="@drawable/demo1"
         android:icon="@drawable/demo1"
-        android:label="label"
-        android:protectionLevel="dangerous" />
+        android:label="@string/app_name"
+        android:logo="@drawable/demo1"
+        android:manageSpaceActivity=".HookTestAct"
+        android:process=".myDemo"
+        android:resizeableActivity="false"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".AudioAndVideoAct"></activity>
+        <activity
+            android:name=".PercentActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".AnswerCardAct" /> <!-- <activity android:name=".ViewGroupAnimatorActivity" /> -->
+        <activity android:name=".AnimitionScaleAct" />
 
-    <permission-group
-        android:name="group"
-        android:permissionGroupFlags="personalInfo" />
+        <activity
+            android:name=".MainActivity"
+            android:taskAffinity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI" /> <!-- 访问内容提供程序数据所需要的权限，会自动允许 -->
-    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
-    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ViewGroupAnimatorActivity" />
+        <activity android:name=".ViewListActivity" />
+        <activity
+            android:name=".AppCompatActivitySub"
+            android:label="@string/lambda"
+            android:launchMode="singleInstance"
+            android:taskAffinity=".AppCompatActivitySub" />
+        <!--
+当 activity 是 栈的根节点的时候，如果设置 android:excludeFromRecents="true" 代表不放在概览屏幕中
+        这个潜在意思是，当 你退掉或者点击显示概览屏幕的时候，当前的activity会被删除
+        -->
+        <activity android:name=".DrawableDemoAct" />
+        <activity android:name=".ReflexDemoAct" />
+        <activity android:name=".HookTestAct" />
+        <activity android:name=".ProviderTestAct" />
+        <activity android:name=".ServiceTestAct" />
+        <activity android:name=".AlgorithmTestAct" />
+        <activity android:name=".SortAlgorithmAct" />
+        <activity android:name=".SkillActivity" />
+        <activity android:name=".ThreadActivity" />
+        <activity android:name=".MemoryActivity" />
+        <activity android:name=".UserDocumentProviderTestAct" />
+        <activity android:name=".SystemImageProviderDemo" />
+        <activity android:name=".MyScrollViewActivity" />
+        <activity android:name=".AiSoundActivity" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
-    <supports-screens
-        android:anyDensity="false"
-        android:requiresSmallestWidthDp="160" />
+        <service android:name=".service.ServiceTest" />
+
+        <uses-library android:name="android.test.runner" />
+    </application>
 
     <compatible-screens>
 
@@ -73,78 +114,44 @@
             android:screenSize="normal" />
     </compatible-screens>
 
-    <supports-gl-texture android:name="GL_EXT_texture_compression_latc" />
-
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:functionalTest="true"
         android:handleProfiling="true"
         android:label="test"
         android:targetPackage="com.example.forev.mycodelibrary"
-        android:targetProcesses="*" />
-
-    <application
-        android:name=".LibraryApplication"
-        android:allowBackup="false"
-        android:allowClearUserData="false"
-        android:allowTaskReparenting="true"
-        android:banner="@drawable/demo1"
+        android:targetProcesses="*" /> <!-- 访问内容提供程序数据所需要的权限，会自动允许 -->
+    <permission
+        android:name="com.example.forev.mycodelibrary.YAYALI"
+        android:description="@string/permission_des"
         android:icon="@drawable/demo1"
-        android:label="@string/app_name"
-        android:logo="@drawable/demo1"
-        android:manageSpaceActivity=".HookTestAct"
-        android:process=".myDemo"
-        android:resizeableActivity="false"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PercentActivity"
-            android:screenOrientation="landscape"
-            ></activity>
-        <activity android:name=".AnswerCardAct" /> <!-- <activity android:name=".ViewGroupAnimatorActivity" /> -->
-        <uses-library android:name="android.test.runner" />
+        android:label="label"
+        android:protectionLevel="dangerous" />
+    <permission-group
+        android:name="group"
+        android:permissionGroupFlags="personalInfo" />
+    <supports-gl-texture android:name="GL_EXT_texture_compression_latc" />
+    <supports-screens
+        android:anyDensity="false"
+        android:requiresSmallestWidthDp="160" />
+    <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI" />
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" /> <!-- 先声sdk -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-        <activity android:name=".AnimitionScaleAct" />
-        <activity
-            android:name=".MainActivity"
-            android:taskAffinity=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ViewGroupAnimatorActivity" />
-        <activity android:name=".ViewListActivity" />
-        <!--
-当 activity 是 栈的根节点的时候，如果设置 android:excludeFromRecents="true" 代表不放在概览屏幕中
-        这个潜在意思是，当 你退掉或者点击显示概览屏幕的时候，当前的activity会被删除
-        -->
-        <activity
-            android:name=".AppCompatActivitySub"
-            android:label="@string/lambda"
-            android:launchMode="singleInstance"
-            android:taskAffinity=".AppCompatActivitySub" />
-        <activity android:name=".DrawableDemoAct" />
-        <activity android:name=".ReflexDemoAct" />
-        <activity android:name=".HookTestAct" />
-        <activity android:name=".ProviderTestAct" />
-        <activity android:name=".ServiceTestAct" />
-        <activity android:name=".AlgorithmTestAct" />
-        <activity android:name=".SortAlgorithmAct" />
-        <activity android:name=".SkillActivity" />
-        <activity android:name=".ThreadActivity" />
-        <activity android:name=".MemoryActivity" />
-        <activity android:name=".UserDocumentProviderTestAct" />
-        <activity android:name=".SystemImageProviderDemo" />
-        <activity android:name=".MyScrollViewActivity" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-        <service android:name=".service.ServiceTest" />
-    </application>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 </manifest>

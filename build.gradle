@@ -18,6 +18,9 @@ buildscript {
 allprojects {
     repositories {
         google()
+        maven {
+            url 'http://repo.singsound.com/repository/singsound_ginger_android_sdk/'
+        }
         jcenter()
     }
 }
