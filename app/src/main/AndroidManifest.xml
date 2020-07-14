@@ -62,6 +62,7 @@
         <activity android:name=".SystemImageProviderDemo" />
         <activity android:name=".MyScrollViewActivity" />
         <activity android:name=".AiSoundActivity" />
+        <activity android:name=".SurfaceViewActivity"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
