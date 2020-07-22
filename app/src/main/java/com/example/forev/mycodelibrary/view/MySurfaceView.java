@@ -114,3 +114,76 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     }
 }
+
+
+/**
+ * 我自己的写法，写的有一些简单
+ *
+ */
+//public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+//    private static final String TAG = "MySurfaceView";
+//    private Thread mDrawThread;
+//
+//    public MySurfaceView(Context context) {
+//        super(context);
+//        init();
+//    }
+//
+//    public MySurfaceView(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//        init();
+//    }
+//
+//    public MySurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
+//        super(context, attrs, defStyleAttr);
+//        init();
+//    }
+//
+//    private void init() {
+//        SurfaceHolder holder = getHolder();
+//        holder.addCallback(this);
+//    }
+//
+//    @Override
+//    public void surfaceCreated(SurfaceHolder holder) {
+//        Log.d(TAG, "surfaceCreated holder=" + holder);
+//
+//    }
+//
+//    @Override
+//    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+//        Log.d(TAG, "surfaceChanged holder=" + holder);
+//        if (null == mDrawThread) {
+//            mDrawThread = new MyDrawThread(holder);
+//        }
+//        mDrawThread.start();
+//    }
+//
+//    @Override
+//    public void surfaceDestroyed(SurfaceHolder holder) {
+//        Log.d(TAG, "surfaceDestroyed holder=" + holder);
+//    }
+//
+//    private class MyDrawThread extends Thread {
+//        private SurfaceHolder holder;
+//
+//        public MyDrawThread(SurfaceHolder holder) {
+//            super();
+//            this.holder = holder;
+//        }
+//
+//        @Override
+//        public void run() {
+//            Log.d(TAG, "run()..");
+//            Canvas canvas = null;
+//            try {
+//                canvas = holder.lockCanvas();
+//                canvas.drawColor(Color.parseColor("#FF0000"));
+//            }catch (Exception e) {
+//                e.printStackTrace();
+//            } finally {
+//                holder.unlockCanvasAndPost(canvas);  //这里如果不释放的话会画不出来，是黑的！
+//            }
+//        }
+//    }
+//}
