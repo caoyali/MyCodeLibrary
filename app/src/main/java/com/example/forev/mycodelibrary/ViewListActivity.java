@@ -25,7 +25,7 @@ public class ViewListActivity extends BaseActivity {
     }
 
     @OnClick({R.id.loading_dialog, R.id.constriant_layout, R.id.mOpenNowAct, R.id.mCustomViewDemo,
-    R.id.mAnswerCardTest, R.id.mPercent, R.id.mSurfaceView})
+    R.id.mAnswerCardTest, R.id.mPercent, R.id.mSurfaceView, R.id.motion_layout})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.constriant_layout:
@@ -49,6 +49,9 @@ public class ViewListActivity extends BaseActivity {
                 break;
             case R.id.mSurfaceView:
                 openActivity(SurfaceViewActivity.class);
+                break;
+            case R.id.motion_layout:
+                openActivity(MotionLayoutAct.class);
                 break;
         }
     }

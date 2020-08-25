@@ -21,13 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AudioAndVideoAct"></activity>
+        <activity android:name=".MotionLayoutAct"></activity>
+        <activity android:name=".AudioAndVideoAct" />
         <activity
             android:name=".PercentActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".AnswerCardAct" /> <!-- <activity android:name=".ViewGroupAnimatorActivity" /> -->
         <activity android:name=".AnimitionScaleAct" />
-
         <activity
             android:name=".MainActivity"
             android:taskAffinity=".MainActivity">
@@ -62,7 +62,8 @@
         <activity android:name=".SystemImageProviderDemo" />
         <activity android:name=".MyScrollViewActivity" />
         <activity android:name=".AiSoundActivity" />
-        <activity android:name=".SurfaceViewActivity"/>
+        <activity android:name=".SurfaceViewActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -113,44 +114,43 @@
         <screen
             android:screenDensity="xxxhdpi"
             android:screenSize="normal" />
-    </compatible-screens>
-
+    </compatible-screens> <!-- 访问内容提供程序数据所需要的权限，会自动允许 -->
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:functionalTest="true"
         android:handleProfiling="true"
         android:label="test"
         android:targetPackage="com.example.forev.mycodelibrary"
-        android:targetProcesses="*" /> <!-- 访问内容提供程序数据所需要的权限，会自动允许 -->
+        android:targetProcesses="*" />
+
     <permission
         android:name="com.example.forev.mycodelibrary.YAYALI"
         android:description="@string/permission_des"
         android:icon="@drawable/demo1"
         android:label="label"
         android:protectionLevel="dangerous" />
+
     <permission-group
         android:name="group"
         android:permissionGroupFlags="personalInfo" />
+
     <supports-gl-texture android:name="GL_EXT_texture_compression_latc" />
+
     <supports-screens
         android:anyDensity="false"
         android:requiresSmallestWidthDp="160" />
     <uses-permission android:name="com.example.forev.mycodelibrary.YAYALI" />
-    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
-    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" /> <!-- 先声sdk -->
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" /> <!-- 先声sdk -->
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

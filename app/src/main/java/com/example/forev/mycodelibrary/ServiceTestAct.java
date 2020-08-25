@@ -62,7 +62,7 @@ public class ServiceTestAct extends BaseActivity {
         // 无论start多少次，只会调用一次onCreate，直至被 stop.stop的时候会执行onDestroy
     }
 
-    @OnClick({R.id.mBindServer, R.id.mUnbindServic, R.id.mStartActivity, R.id.mFinish})
+    @OnClick({R.id.mBindServer, R.id.mUnbindServic, R.id.mStartActivity, R.id.mFinish, R.id.mAidlService})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.mBindServer:
@@ -75,6 +75,9 @@ public class ServiceTestAct extends BaseActivity {
             case R.id.mStartActivity:
                     break;
             case R.id.mFinish:
+                break;
+            case R.id.mAidlService:
+
                 break;
 
         }
