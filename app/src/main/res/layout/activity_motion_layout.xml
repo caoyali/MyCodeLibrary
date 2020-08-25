@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.motion.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MotionLayoutAct">
+    app:layoutDescription="@xml/scene_01"
+    app:currentState="@id/end"
+    tools:showPaths="true">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.utils.ImageFilterView
+        android:id="@+id/mImageFilterView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher_round"
+        />
+
+</android.support.constraint.motion.MotionLayout>
